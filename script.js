@@ -935,7 +935,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
       showNotice(
-        "🧹 掃除機！　ダニが全部いなくなった"
+        "🧹 ほうき！　ダニが全部いなくなった"
       );
 
     }
