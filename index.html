@@ -1,37 +1,136 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
   <title>ぬいよ、逃げろ。</title>
 
-  <link rel="stylesheet" href="style.css">
+  <meta
+    name="description"
+    content="ダニから逃げろ！ぬいぐるみを操作して、できるだけ長く生き残ろう。"
+  >
+
+  <!-- X・SNS用 -->
+
+  <meta
+    property="og:type"
+    content="website"
+  >
+
+  <meta
+    property="og:title"
+    content="ぬいよ、逃げろ。"
+  >
+
+  <meta
+    property="og:description"
+    content="ダニから逃げろ！ぬいぐるみを操作して、できるだけ長く生き残ろう。"
+  >
+
+  <meta
+    property="og:url"
+    content="https://5744n885f2-wq.github.io/marupi/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://5744n885f2-wq.github.io/marupi/ogp.png"
+  >
+
+  <!-- X用 -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  >
+
+  <meta
+    name="twitter:title"
+    content="ぬいよ、逃げろ。"
+  >
+
+  <meta
+    name="twitter:description"
+    content="ダニから逃げろ！"
+  >
+
+  <meta
+    name="twitter:image"
+    content="https://5744n885f2-wq.github.io/marupi/ogp.png"
+  >
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
 
+
 <body>
+
+
+  <!-- =========================
+       スタート画面
+  ========================= -->
 
   <div id="startScreen" class="screen">
 
     <div class="title">
-      <div class="tiny">NUI ESCAPE</div>
-      <h1>ぬいよ、逃げろ。</h1>
-      <p>ダニから逃げろ！</p>
+
+      <div class="tiny">
+        NUI ESCAPE
+      </div>
+
+      <h1>
+        ぬいよ、逃げろ。
+      </h1>
+
+      <p>
+        ダニから逃げろ！
+      </p>
+
     </div>
+
 
     <div class="card">
 
+
+      <!-- 写真選択 -->
+
       <label class="photoButton">
-        <span id="photoText">📷 ぬいの写真を選ぶ</span>
+
+        <span id="photoText">
+          📷 ぬいの写真を選ぶ
+        </span>
+
         <input
           id="imageInput"
           type="file"
           accept="image/*"
         >
+
       </label>
 
+
       <div id="previewBox">
-        <img id="preview" alt="ぬいの写真">
+
+        <img
+          id="preview"
+          alt="ぬいの写真"
+        >
+
       </div>
+
+
+      <!-- 名前 -->
 
       <input
         id="nameInput"
@@ -40,95 +139,173 @@
         placeholder="ぬいの名前（なくてもOK）"
       >
 
+
+      <!-- アイテム説明 -->
+
       <div class="guide">
 
         <div class="guideTitle">
           ゲーム中に拾えるもの
         </div>
 
+
         <div class="guideRow">
+
           <span>🧹</span>
 
           <div>
-            <b>掃除機</b>
+
+            <b>
+              掃除機
+            </b>
+
             <small>
               画面内のダニが全部いなくなる
             </small>
+
           </div>
+
         </div>
 
+
         <div class="guideRow">
+
           <span>🧴</span>
 
           <div>
-            <b>スプレー</b>
+
+            <b>
+              スプレー
+            </b>
+
             <small>
               5秒間、ダニに当たっても平気
             </small>
+
           </div>
+
         </div>
 
+
         <div class="guideRow">
+
           <span>🍪</span>
 
           <div>
-            <b>おやつ</b>
+
+            <b>
+              おやつ
+            </b>
+
             <small>
               5秒間、ぬいの動きが少し速くなる
             </small>
+
           </div>
+
         </div>
 
       </div>
+
+
+      <!-- ゲーム開始 -->
 
       <button id="startButton">
         ゲームをはじめる
       </button>
 
+
       <div class="hint">
         写真を選んでからスタートしてね
       </div>
+
 
     </div>
 
   </div>
 
 
+
+  <!-- =========================
+       ゲーム画面
+  ========================= -->
+
   <div id="gameScreen">
+
 
     <canvas id="gameCanvas"></canvas>
 
+
+    <!-- HUD -->
+
     <div class="hud">
 
-      <div>
-        <span>TIME</span>
-        <strong id="timeText">0.0</strong>
-      </div>
 
       <div>
-        <span>LIFE</span>
-        <strong id="lifeText">♥♥♥</strong>
+
+        <span>
+          TIME
+        </span>
+
+        <strong id="timeText">
+          0.0
+        </strong>
+
       </div>
 
+
       <div>
-        <span>BEST</span>
-        <strong id="bestText">0.0</strong>
+
+        <span>
+          LIFE
+        </span>
+
+        <strong id="lifeText">
+          ♥♥♥
+        </strong>
+
       </div>
+
+
+      <div>
+
+        <span>
+          BEST
+        </span>
+
+        <strong id="bestText">
+          0.0
+        </strong>
+
+      </div>
+
 
     </div>
 
+
+    <!-- レベル -->
 
     <div id="levelText">
       LEVEL 1
     </div>
 
 
+    <!-- 通知 -->
+
     <div id="notice"></div>
 
 
+    <!-- =========================
+         リザルト
+    ========================= -->
+
     <div id="resultScreen">
 
+
       <div class="resultCard">
+
+
+        <!-- ぬいの写真 -->
 
         <img
           id="resultImage"
@@ -136,18 +313,24 @@
           alt="ぬいの写真"
         >
 
+
         <div class="resultTiny">
           TODAY'S RESULT
         </div>
+
 
         <h2 id="resultTitle">
           よく頑張った。
         </h2>
 
 
+        <!-- 生存時間 -->
+
         <div class="survival">
 
-          <span>生存時間</span>
+          <span>
+            生存時間
+          </span>
 
           <strong id="finalTime">
             0.0秒
@@ -156,57 +339,101 @@
         </div>
 
 
+        <!-- 数値 -->
+
         <div class="numbers">
 
+
           <div>
-            <span>遭遇したダニ</span>
+
+            <span>
+              遭遇したダニ
+            </span>
+
             <b id="miteCount">
               0匹
             </b>
+
           </div>
 
+
           <div>
-            <span>拾ったもの</span>
+
+            <span>
+              拾ったもの
+            </span>
+
             <b id="itemCount">
               0個
             </b>
+
           </div>
 
+
           <div>
-            <span>おやつ</span>
+
+            <span>
+              おやつ
+            </span>
+
             <b id="snackCount">
               0個
             </b>
+
           </div>
+
 
         </div>
 
+
+        <!-- 評価 -->
 
         <div class="ratings">
 
+
           <div>
-            <span>逃げ足</span>
+
+            <span>
+              逃げ足
+            </span>
+
             <b id="speedRating">
               ★★★★★
             </b>
+
           </div>
 
+
           <div>
-            <span>警戒心</span>
+
+            <span>
+              警戒心
+            </span>
+
             <b id="alertRating">
               ★★★★★
             </b>
+
           </div>
 
+
           <div>
-            <span>かわいさ</span>
+
+            <span>
+              かわいさ
+            </span>
+
             <b>
               ★★★★★
             </b>
+
           </div>
+
 
         </div>
 
+
+        <!-- 今日のひとこと -->
 
         <div class="commentBox">
 
@@ -219,13 +446,17 @@
         </div>
 
 
+        <!-- リトライ -->
+
         <button id="retryButton">
           もう一度やる
         </button>
 
+
       </div>
 
     </div>
+
 
   </div>
 
@@ -233,4 +464,5 @@
   <script src="script.js"></script>
 
 </body>
+
 </html>
