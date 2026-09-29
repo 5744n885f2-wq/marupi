@@ -1,0 +1,635 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Helvetica Neue",
+    Arial,
+    sans-serif;
+
+  color: #463e39;
+  background: #e9e1da;
+}
+
+
+/* =========================
+   スタート画面
+========================= */
+
+.screen {
+  position: fixed;
+  inset: 0;
+
+  overflow-y: auto;
+
+  padding: 35px 18px;
+
+  background: #e9e1da;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+
+.tiny {
+  font-size: 8px;
+  letter-spacing: .25em;
+  opacity: .4;
+}
+
+
+.title h1 {
+  margin: 7px 0 5px;
+
+  font-size: 30px;
+  letter-spacing: -.08em;
+}
+
+
+.title p {
+  margin: 0;
+
+  font-size: 11px;
+
+  color: #92857d;
+}
+
+
+.card {
+  width: min(92%, 390px);
+
+  padding: 20px;
+
+  border-radius: 25px;
+
+  background: rgba(255,255,255,.58);
+
+  box-shadow:
+    0 15px 45px rgba(70,55,45,.07);
+}
+
+
+/* 写真選択 */
+
+.photoButton {
+  width: 100%;
+  height: 55px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 17px;
+
+  background: rgba(255,255,255,.92);
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+
+.photoButton input {
+  display: none;
+}
+
+
+#previewBox {
+  display: none;
+
+  width: 150px;
+  height: 150px;
+
+  margin: 15px auto;
+
+  border-radius: 20px;
+
+  background: rgba(255,255,255,.5);
+
+  overflow: hidden;
+}
+
+
+#preview {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+
+
+/* 名前 */
+
+#nameInput {
+  width: 100%;
+  height: 52px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 16px;
+
+  padding: 0 15px;
+
+  margin-top: 10px;
+
+  background: rgba(255,255,255,.92);
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #463e39;
+}
+
+
+#nameInput::placeholder {
+  color: #b5aaa3;
+}
+
+
+/* アイテム説明 */
+
+.guide {
+  margin-top: 15px;
+
+  padding: 14px;
+
+  border-radius: 17px;
+
+  background: rgba(255,255,255,.62);
+}
+
+
+.guideTitle {
+  margin-bottom: 8px;
+
+  font-size: 9px;
+
+  color: #a2948b;
+
+  letter-spacing: .08em;
+}
+
+
+.guideRow {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 7px 0;
+}
+
+
+.guideRow > span {
+  width: 28px;
+
+  text-align: center;
+
+  font-size: 21px;
+}
+
+
+.guideRow b {
+  display: block;
+
+  font-size: 10px;
+}
+
+
+.guideRow small {
+  display: block;
+
+  margin-top: 2px;
+
+  font-size: 9px;
+
+  color: #9c9088;
+}
+
+
+/* 開始ボタン */
+
+#startButton {
+  width: 100%;
+  height: 55px;
+
+  border: none;
+
+  margin-top: 15px;
+
+  border-radius: 17px;
+
+  background: #463e39;
+
+  color: white;
+
+  font-size: 13px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+
+.hint {
+  text-align: center;
+
+  margin: 9px 0 0;
+
+  color: #a39790;
+
+  font-size: 9px;
+}
+
+
+/* =========================
+   ゲーム
+========================= */
+
+#gameScreen {
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  background: #d9d0c7;
+}
+
+
+#gameCanvas {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.hud {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 18px;
+
+  left: 20px;
+  right: 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  pointer-events: none;
+}
+
+
+.hud span {
+  display: block;
+
+  font-size: 8px;
+
+  letter-spacing: .13em;
+
+  color: rgba(55,45,40,.5);
+}
+
+
+.hud strong {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 17px;
+
+  color: #342d29;
+}
+
+
+#lifeText {
+  color: #a16f66;
+  letter-spacing: 2px;
+}
+
+
+#levelText {
+  position: absolute;
+
+  z-index: 5;
+
+  top: 68px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 5px 11px;
+
+  border-radius: 20px;
+
+  background: rgba(255,255,255,.45);
+
+  font-size: 8px;
+
+  letter-spacing: .13em;
+
+  color: rgba(60,50,45,.55);
+}
+
+
+/* 通知 */
+
+#notice {
+  position: absolute;
+
+  z-index: 10;
+
+  top: 100px;
+
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  padding: 9px 15px;
+
+  border-radius: 20px;
+
+  background: rgba(255,255,255,.92);
+
+  box-shadow:
+    0 6px 25px rgba(50,40,30,.1);
+
+  white-space: nowrap;
+
+  font-size: 10px;
+
+  opacity: 0;
+
+  transition: opacity .2s;
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   リザルト
+========================= */
+
+#resultScreen {
+  display: none;
+
+  position: absolute;
+
+  z-index: 30;
+
+  inset: 0;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 18px;
+
+  background: rgba(55,45,40,.27);
+
+  backdrop-filter: blur(5px);
+}
+
+
+.resultCard {
+  width: min(92%, 380px);
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  padding: 25px 22px 22px;
+
+  border-radius: 27px;
+
+  background: #fffdfa;
+
+  box-shadow:
+    0 25px 70px rgba(50,40,30,.25);
+
+  text-align: center;
+}
+
+
+.resultTiny {
+  font-size: 8px;
+
+  letter-spacing: .2em;
+
+  color: #b1a29a;
+}
+
+
+#resultTitle {
+  margin: 9px 0 20px;
+
+  font-size: 23px;
+
+  letter-spacing: -.06em;
+
+  line-height: 1.3;
+}
+
+
+.survival {
+  padding: 15px;
+
+  margin-bottom: 12px;
+
+  border-radius: 17px;
+
+  background: #f5efea;
+}
+
+
+.survival span {
+  display: block;
+
+  font-size: 9px;
+
+  color: #9e928a;
+}
+
+
+.survival strong {
+  display: block;
+
+  margin-top: 3px;
+
+  font-size: 29px;
+}
+
+
+.numbers {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #eee5df;
+}
+
+
+.numbers div {
+  border-right: 1px solid #eee5df;
+}
+
+
+.numbers div:last-child {
+  border: none;
+}
+
+
+.numbers span {
+  display: block;
+
+  font-size: 8px;
+
+  color: #aaa09a;
+}
+
+
+.numbers b {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 12px;
+}
+
+
+.ratings {
+  margin-top: 15px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.ratings div {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 8px 10px;
+
+  border-radius: 10px;
+
+  background: #faf6f2;
+}
+
+
+.ratings span {
+  font-size: 10px;
+
+  color: #9c918b;
+}
+
+
+.ratings b {
+  font-size: 11px;
+
+  color: #b68e78;
+
+  letter-spacing: 2px;
+}
+
+
+.commentBox {
+  margin-top: 17px;
+
+  padding: 14px;
+
+  border-radius: 17px;
+
+  background: #f8f2ed;
+}
+
+
+.commentBox > div {
+  font-size: 9px;
+
+  color: #b0988b;
+
+  letter-spacing: .12em;
+}
+
+
+.commentBox p {
+  margin: 7px 0 0;
+
+  font-size: 11px;
+
+  line-height: 1.7;
+
+  color: #6e625b;
+}
+
+
+#retryButton {
+  width: 100%;
+  height: 49px;
+
+  border: none;
+
+  margin-top: 17px;
+
+  border-radius: 15px;
+
+  background: #463e39;
+
+  color: white;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}.resultImage {
+  display: block;
+
+  width: auto;
+  height: 120px;
+
+  max-width: 80%;
+
+  object-fit: contain;
+
+  margin: 0 auto 14px;
+}
